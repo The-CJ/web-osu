@@ -86,6 +86,9 @@ body {overflow: hidden}
 		border-radius: 0%;
 		transform: rotate(45deg);
 	}
+	30% {
+		opacity: 0;
+	}
 	100% {
 		opacity: 0;
 		border-radius: 0%;
