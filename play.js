@@ -6,9 +6,9 @@ var combocount = 0;
 
 var success_value = 0;
 
-var current_ar = 1.5;
+var current_ar = 1;
 var current_od = 5;
-var current_cs = 4;
+var current_cs = 3;
 
 $('document').ready(function () {
 });
@@ -28,7 +28,7 @@ async function start_game() {
 
 	while (started) {
 		spawn_obj();
-		await sleep(10000/current_od);
+		await sleep(4000/current_od);
 	}
 
 
@@ -37,7 +37,7 @@ async function start_game() {
 function hit(id) {
 	var obj = $('#'+id);
 	obj.removeClass('hit_object');
-	obj.children().remove();
+	obj.siblings().remove();
 	obj.attr('onclick','');
 	obj.attr('id', "");
 	obj.css('background-color','');
@@ -55,53 +55,12 @@ function hit(id) {
 
 }
 
-function score(value) {
-
-	if (success_value == 10) {
-		current_ar = 1.3;
-		show_message("Level up: AR UP ("+current_ar+")");
-	}
-
-	if (success_value == 30) {
-		current_ar = 2.0;
-		object_count(2);
-		show_message("Level up: Pump it up (Objects 2) AR("+current_ar+")");
-	}
-
-	if (success_value == 100) {
-		current_ar = 1.7;
-		show_message("Level up: AR UP ("+current_ar+")");
-	}
-
-	if (success_value == 150) {
-		current_ar = 1.5;
-		show_message("Level up: AR UP ("+current_ar+")");
-	}
-
-	if (success_value == 200) {
-		current_ar = 2;
-		show_message("Level up: Pump it up (Objects 3) AR("+current_ar+")");
-		object_count(3);
-	}
-}
-
-function add_fail() {
+function hit_fail() {
 	failcount = failcount + 1;
   combocount = 0;
 
   $('#fail_count').text(failcount);
 	$('#combo_count').text(combocount);
-
-}
-
-function object_count(ammount) {
-	$('.hit_object:visible').remove();
-
-	for(var i=0; i < ammount; i++){
-		setTimeout(function () {
-			spawn_obj();
-		}, current_ar + 2 / ammount);
-	}
 
 }
 
@@ -116,27 +75,27 @@ function spawn_obj(id) {
 
 	let main = $('#playarea');
 
-	let height = Math.floor(Math.random() * main.height() - 75/2);
-	let width = Math.floor(Math.random() * main.width() - 75/2);
+	let height = Math.floor(Math.random() * main.height() - (400/current_cs)/2);
+	let width = Math.floor(Math.random() * main.width() - (400/current_cs)/2);
 
 	var h_obj = $('#hit_object').children().clone();
 
 	var obj_id = "btn_id_" + Math.floor(Math.random() * 10000000)
 
-	h_obj.attr('id', obj_id);
-	h_obj.attr('onclick', 'hit("'+obj_id+'")');
+	h_obj.children('.hit_object').attr('id', obj_id);
+	h_obj.children('.hit_object').attr('onclick', 'hit("'+obj_id+'")');
 
 	// Pos
 	h_obj.css('top', height);
 	h_obj.css('left', width);
 
 	// Size
-	h_obj.css('heigth', (400/current_cs)+"px");
-	h_obj.css('width', (400/current_cs)+"px");
+	h_obj.children().css('height', (400/current_cs)+"px");
+	h_obj.children().css('width', (400/current_cs)+"px");
 
 	// color and fadein
-	h_obj.css('background-color',get_obj_color());
-	h_obj.children('.app_circle').css('animation-duration', String(current_ar) + "s");
+	h_obj.children('.hit_object').css('background-color',get_obj_color());
+	h_obj.children('.app_circle').css('animation-duration', String(5/current_ar) + "s");
 
 	main.append(h_obj);
 
@@ -146,17 +105,17 @@ function spawn_obj(id) {
 		if (obj.length == 0) {
 			return;
 		}
-		add_fail();
+		hit_fail();
 		obj.children().remove();
 		obj.attr('onclick','');
 		obj.css('z-index','-1');
 
 		obj.addClass('fail_to_hit');
 		setTimeout(function () {
-			obj.remove();
+			obj.parent().remove();
 		}, 2500);
 
-	}, (current_ar + 0.2) * 1000);
+	}, (5/current_ar + 0.2) * 1000);
 
 }
 
