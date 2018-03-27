@@ -4,16 +4,29 @@ var hitcount = 0;
 var failcount = 0;
 var combocount = 0;
 
-var success_value = 0;
+var generated_obj = 0;
 
-var current_ar = 1;
-var current_od = 5;
-var current_cs = 3;
+var combo_multiplyer = 1;
+
+var current_ar = 4;
+var current_od = 4;
+var current_cs = 4;
 
 $('document').ready(function () {
 });
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function restart_game() {
+  hitcount = 0;
+  failcount = 0;
+  combocount = 0;
+  generated_obj=0;
+  $('#level_count').text("0");
+  $('#hit_count').text(hitcount);
+	$('#combo_count').text(combocount);
+  $('#fail_count').text(failcount);
 }
 
 async function start_game() {
@@ -24,7 +37,12 @@ async function start_game() {
 	} else {
     started = false;
     $('#play_btn').removeClass('btn-danger').addClass('btn-success').text('Restart');
+    return;
 	}
+  restart_game();
+  current_ar = $('#AR').val();
+  current_od = $('#OD').val();
+  current_cs = $('#CS').val();
 
 	while (started) {
 		spawn_obj();
@@ -32,6 +50,16 @@ async function start_game() {
 	}
 
 
+}
+
+function score_update() {
+  let old_score = parseInt($('#level_count').text());
+  let combo = parseInt($('#combo_count').text());
+  console.log(combo+"asd");
+  add_ = (300 * ((100+combo-1)/100)) * combo_multiplyer;
+  new_score = Math.floor(old_score + add_);
+
+  $('#level_count').text(new_score);
 }
 
 function hit(id) {
@@ -48,11 +76,9 @@ function hit(id) {
 
   hitcount = hitcount + 1;
 	combocount = combocount + 1;
-	success_value = success_value + 1;
 	$('#hit_count').text(hitcount);
-  $('#level_count').text(success_value);
 	$('#combo_count').text(combocount);
-
+  score_update();
 }
 
 function hit_fail() {
@@ -83,21 +109,29 @@ function spawn_obj(id) {
 	var obj_id = "btn_id_" + Math.floor(Math.random() * 10000000)
 
 	h_obj.children('.hit_object').attr('id', obj_id);
-	h_obj.children('.hit_object').attr('onclick', 'hit("'+obj_id+'")');
+  h_obj.children('.hit_object').attr('onclick', 'hit("'+obj_id+'")');
+	h_obj.children('.hit_object').attr('onkeydown', 'console.log(this)');
 
 	// Pos
 	h_obj.css('top', height);
 	h_obj.css('left', width);
 
+  // higher than old obj
+  h_obj.children('.hit_object').css('z-index', (100000-generated_obj));
+
 	// Size
-	h_obj.children().css('height', (400/current_cs)+"px");
+  h_obj.children().css('height', (400/current_cs)+"px");
 	h_obj.children().css('width', (400/current_cs)+"px");
 
 	// color and fadein
 	h_obj.children('.hit_object').css('background-color',get_obj_color());
 	h_obj.children('.app_circle').css('animation-duration', String(5/current_ar) + "s");
 
+  generated_obj = generated_obj + 1
 	main.append(h_obj);
+  if (generated_obj > 90000) {
+    generated_obj = 1;
+  }
 
 	// didn't hit?
 	setTimeout(function () {
@@ -107,7 +141,8 @@ function spawn_obj(id) {
 		}
 		hit_fail();
 		obj.children().remove();
-		obj.attr('onclick','');
+    obj.attr('onclick','');
+		obj.attr('onkeydown','');
 		obj.css('z-index','-1');
 
 		obj.addClass('fail_to_hit');

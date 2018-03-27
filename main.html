@@ -14,9 +14,22 @@
 
 		<h2 style="position: fixed;top:1vh;right:1vh;color:white;"><span id="level_count">0</span> - Score</h2>
 
+		<!-- Diff settings -->
+		<div style="position: fixed;top:20vh;left:1vh;width: 20em;color:white;">
+			<input type="range" id="AR" min="1" max="10" step="1" value="3" style="width: 80%" oninput="$('#_AR').text(this.value)" title="Approach Rate (1 - Slow as fuck | 10 - Holy fuuuu)">
+			<br>AR: <span id="_AR">3</span><br>
+			<input type="range" id="OD" min="1" max="10" step="1" value="3"	style="width: 80%" oninput="$('#_OD').text(this.value)" title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 10 - 'Help i can not see my playarea D:')">
+			<br>OD: <span id="_OD">3</span><br>
+			<input type="range" id="CS" min="1" max="10" step="1" value="3" style="width: 80%" oninput="$('#_CS').text(this.value)" title="Circle Size (1 - Playarea = Circle | 10 - 'Get my glasses')">
+			<br>CS: <span id="_CS">3</span><br>
+			<br><br>
+			<span title="Disables normal Diff. settings and gets your ass spread">"Fuck me Daddy" - Mode:</span><br>
+			<input title="Disables normal Diff. settings and gets your ass spread" type="checkbox" onchange="if (this.checked) {$('input[type=range]').attr('max', 30).parent().css('background-color','red')} else {$('input[type=range]').attr('max', 10).parent().css('background-color','')}" title="">
+		</div>
+
 		<div hidden id="hit_object">
 			<div style="position: absolute">
-				<div class="hit_object" onclick="hit()"></div>
+				<div class="hit_object" onclick="hit()" onkeydown="if (x) {hit()}"></div>
 				<div class="app_circle"></div>
 			</div>
 		</div>
