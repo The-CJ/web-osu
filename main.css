@@ -1,0 +1,102 @@
+body {overflow: hidden}
+
+.hit_object {
+	height: 100px;
+	width: 100px;
+	position:absolute;;
+	border-radius: 50%;
+	border: 2px solid #000;
+	animation-name: fade_in_animation;
+	animation-duration: .5s;
+	animation-iteration-count: 1
+
+}
+
+.got_hit {
+	height: 100px;
+	width: 100px;
+	animation-name: hit_animation;
+	animation-duration: .25s;
+	animation-iteration-count: 1
+}
+
+.app_circle {
+	border-radius: 50%;
+	border: 2px solid black;
+	height: 100px;
+	width: 100px;
+	transform: scale(2.5);
+	opacity: 0;
+	position: relative;
+	top: -2px;
+	left: -2px;
+	animation-name: appro__circle;
+	animation-duration: 1.25s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
+.fail_to_hit {
+	position: absolute;
+	animation-name: fail_;
+	animation-duration: 2.5s;
+	animation-iteration-count: 1;
+}
+
+@keyframes appro__circle {
+	0%{
+		transform: scale(3.5);
+		opacity: 0;
+	}
+	100%{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fade_in_animation {
+	0% {
+		transform: scale(1.05);
+		opacity: 0;
+	}
+	100 {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes hit_animation {
+	0% {
+		position:absolute;
+		border-radius: 50%;
+		border: 2px solid #000;
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		position:absolute;
+		border-radius: 50%;
+		border: 2px solid #000;
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+@keyframes fail_ {
+	0%{
+		opacity: 1;
+		border-radius: 50%;
+		transform: rotate(0deg);
+	}
+	10%{
+		opacity: 0.50;
+		border-radius: 0%;
+		transform: rotate(45deg);
+	}
+	100% {
+		opacity: 0;
+		border-radius: 0%;
+		transform: rotate(45deg);
+	}
+
+}
