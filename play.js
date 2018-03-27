@@ -2,6 +2,7 @@ var started = false;
 
 var hitcount = 0;
 var failcount = 0;
+var combocount = 0;
 
 var success_value = 0;
 
@@ -18,14 +19,14 @@ function sleep(ms) {
 async function start_game() {
 	if (!started) {
 		started = true;
-		$('#play_btn').removeClass('btn-success').addClass('btn-danger').text('Ende');
-
+    $('#play_btn').removeClass('btn-success').addClass('btn-danger').text('Stop');
 
 	} else {
-		return
+    started = false;
+    $('#play_btn').removeClass('btn-danger').addClass('btn-success').text('Restart');
 	}
 
-	while (true) {
+	while (started) {
 		spawn_obj();
 		await sleep(10000/current_od);
 	}
@@ -45,10 +46,12 @@ function hit(id) {
 		obj.remove();
 	}, 500);
 
-	hitcount = hitcount + 1;
+  hitcount = hitcount + 1;
+	combocount = combocount + 1;
 	success_value = success_value + 1;
 	$('#hit_count').text(hitcount);
-	$('#level_count').text(success_value);
+  $('#level_count').text(success_value);
+	$('#combo_count').text(combocount);
 
 }
 
@@ -84,10 +87,10 @@ function score(value) {
 
 function add_fail() {
 	failcount = failcount + 1;
-	success_value = Math.floor(success_value - (hitcount/10));
+  combocount = 0;
 
-	$('#fail_count').text(failcount);
-	$('#level_count').text(success_value);
+  $('#fail_count').text(failcount);
+	$('#combo_count').text(combocount);
 
 }
 

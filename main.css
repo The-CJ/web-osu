@@ -5,7 +5,7 @@ body {overflow: hidden}
 	width: 100px;
 	position:absolute;;
 	border-radius: 50%;
-	border: 2px solid #000;
+	border: 2px solid #fff;
 	animation-name: fade_in_animation;
 	animation-duration: .5s;
 	animation-iteration-count: 1
@@ -22,7 +22,7 @@ body {overflow: hidden}
 
 .app_circle {
 	border-radius: 50%;
-	border: 2px solid black;
+	border: 2px solid white;
 	height: 100px;
 	width: 100px;
 	transform: scale(2.5);

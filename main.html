@@ -7,11 +7,12 @@
 		<link rel="stylesheet" href="main.css">
 
 	</head>
-	<body>
+	<body style="background: #222">
 
-		<h2 style="position: fixed;top:1em;left:1em;">Hit: <span id="hit_count">0</span></h2>
-		<h2 style="position: fixed;top:2em;left:1em;">Missed: <span id="fail_count">0</span></h2>
-		<h2 style="position: fixed;top:4em;left:1em;">Score: <span id="level_count">0</span></h2>
+		<h2 style="position: fixed;top:1vh;left:1vh;color:white;">Hit: <span id="hit_count">0</span></h2>
+		<h2 style="position: fixed;top:5vh;left:1vh;color:white;">Miss: <span id="fail_count">0</span></h2>
+
+		<h2 style="position: fixed;top:1vh;right:1vh;color:white;"><span id="level_count">0</span> - Score</h2>
 
 		<div hidden id="hit_object">
 			<div class="hit_object" onclick="hit()">
@@ -25,9 +26,10 @@
 		<div class="container" style="padding:1em;">
 
 			<div class="row">
-				<div style="height:100%;width:100%;padding:50px;border:2px solid black;">
+				<div style="height:100%;width:100%;padding:50px;border:2px solid white;">
 					<div class="col" style="height:77vh;position:relative;top:-1em;left:-1em;" id="playarea">
 					</div>
+					<h2 style="position: absolute;color:white;transform: translateX(-35px)">Combo: <span id="combo_count">0</span></h2>
 				</div>
 			</div>
 
@@ -37,7 +39,7 @@
 
 					</div>
 					<hr>
-					<button type="button" class="btn btn-success" onclick="start_game()" id="play_btn">Play?</button>
+					<button type="button" class="btn btn-success" onclick="start_game()" id="play_btn">Play</button>
 				</div>
 			</div>
 		</div>
