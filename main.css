@@ -36,6 +36,17 @@ body {overflow: hidden}
 	animation-iteration-count: 1;
 }
 
+.curser {
+	border: 2px solid white;
+	transition-timing-function: linear;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	background-color: rgba(255, 255, 255, 0.75);
+	transition: 0.5s;
+	z-index: 10000000;
+}
+
 @keyframes appro__circle {
 	0%{
 		transform: scale(3.5);

@@ -15,20 +15,24 @@
 		<h2 style="position: fixed;top:1vh;right:1vh;color:white;"><span id="level_count">0</span> - Score</h2>
 
 		<!-- Diff settings -->
-		<div style="position: fixed;top:20vh;left:1vh;width: 20em;color:white;">
-			<input type="range" id="AR" min="1" max="10" step="1" value="3" style="width: 80%" oninput="$('#_AR').text(this.value)" title="Approach Rate (1 - Slow as fuck | 10 - Holy fuuuu)">
+		<div style="position: fixed;top:20vh;left:1vh;width: 20em;color:white; border: 2px solid transparent">
+			<input type="range" id="AR" min="1" max="20" step="1" value="3" style="width: 80%" oninput="$('#_AR').text(this.value)" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
 			<br>AR: <span id="_AR">3</span><br>
-			<input type="range" id="OD" min="1" max="10" step="1" value="3"	style="width: 80%" oninput="$('#_OD').text(this.value)" title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 10 - 'Help i can not see my playarea D:')">
+			<input type="range" id="OD" min="1" max="20" step="1" value="3"	style="width: 80%" oninput="$('#_OD').text(this.value)" title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 20 - 'Help i can not see my playarea D:')">
 			<br>OD: <span id="_OD">3</span><br>
-			<input type="range" id="CS" min="1" max="10" step="1" value="3" style="width: 80%" oninput="$('#_CS').text(this.value)" title="Circle Size (1 - Playarea = Circle | 10 - 'Get my glasses')">
+			<input type="range" id="CS" min="1" max="20" step="1" value="3" style="width: 80%" oninput="$('#_CS').text(this.value)" title="Circle Size (1 - Playarea = Circle | 20 - 'Get my glasses')">
 			<br>CS: <span id="_CS">3</span><br>
 			<br><br>
 			<span title="Disables normal Diff. settings and gets your ass spread">"Fuck me Daddy" - Mode:</span><br>
-			<input title="Disables normal Diff. settings and gets your ass spread" type="checkbox" onchange="if (this.checked) {$('input[type=range]').attr('max', 30).parent().css('background-color','red')} else {$('input[type=range]').attr('max', 10).parent().css('background-color','')}" title="">
+			<input title="Disables normal Diff. settings and gets your ass spread" type="checkbox" onchange="if (this.checked) {$('input[type=range]').attr('max', 300).parent().css('border-color','red')} else {$('input[type=range]').attr('max', 20).parent().css('border-color','')}" title="">
+			<br><br>
+			<span title="Look how it should look when you play #GitGud">Auto - Mode:</span><br>
+			<input title="Look how it should look when you play #GitGud" type="checkbox" onchange="if (this.checked) {mod_auto=true} else {mod_auto=false}">
 		</div>
 
+		<!-- Hit object -->
 		<div hidden id="hit_object">
-			<div style="position: absolute">
+			<div style="position: absolute" class="hit_main_class">
 				<div class="hit_object"></div>
 				<div class="app_circle"></div>
 			</div>
@@ -46,6 +50,7 @@
 			<div class="row">
 				<div style="height:100%;width:100%;padding:50px;border:2px solid white;">
 					<div class="col" style="height:77vh;position:relative;top:-1em;left:-1em;" id="playarea">
+						<div id="auto_courser" style="position: absolute;top: 100px;left: 0;display: none" class="curser"></div>
 					</div>
 					<h2 style="position: absolute;color:white;transform: translateX(-35px)">Combo: <span id="combo_count">0</span></h2>
 				</div>

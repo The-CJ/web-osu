@@ -4,7 +4,12 @@ var hitcount = 0;
 var failcount = 0;
 var combocount = 0;
 
+var mod_auto = false;
+var auto_courser_positions = [];
+
 var generated_obj = 0;
+var generated_color = "";
+var new_combo = 1;
 
 var combo_multiplyer = 1;
 
@@ -14,6 +19,7 @@ var current_cs = 4;
 
 $('document').ready(function () {
 });
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -32,13 +38,23 @@ function restart_game() {
 async function start_game() {
 	if (!started) {
 		started = true;
+    auto_courser_positions = []
     $('#play_btn').removeClass('btn-success').addClass('btn-danger').text('Stop');
 
 	} else {
     started = false;
+    auto_courser_positions = []
     $('#play_btn').removeClass('btn-danger').addClass('btn-success').text('Restart');
+    $('.hit_main_class:visible').remove();
     return;
 	}
+
+  if (mod_auto) {
+    $('#auto_courser').show();
+  } else {
+    $('#auto_courser').hide();
+  }
+
   restart_game();
   current_ar = $('#AR').val();
   current_od = $('#OD').val();
@@ -55,7 +71,6 @@ async function start_game() {
 function score_update() {
   let old_score = parseInt($('#level_count').text());
   let combo = parseInt($('#combo_count').text());
-  console.log(combo+"asd");
   add_ = (300 * ((100+combo-1)/100)) * combo_multiplyer;
   new_score = Math.floor(old_score + add_);
 
@@ -71,7 +86,7 @@ function hit(id) {
 	obj.css('background-color','');
 	obj.addClass('got_hit');
 	setTimeout(function () {
-		obj.remove();
+		obj.parent().remove();
 	}, 500);
 
   hitcount = hitcount + 1;
@@ -79,6 +94,10 @@ function hit(id) {
 	$('#hit_count').text(hitcount);
 	$('#combo_count').text(combocount);
   score_update();
+  if (mod_auto) {
+    auto_courser_positions.shift();
+    next_auto_target();
+  }
 }
 
 function hit_fail() {
@@ -91,10 +110,15 @@ function hit_fail() {
 }
 
 function get_obj_color() {
+  new_combo = Math.floor(Math.random() * 10);
+  if (new_combo < 6) {
+    return generated_color;
+  }
 	let red = Math.floor(Math.random() * 255)
 	let green = Math.floor(Math.random() * 255)
 	let blue = Math.floor(Math.random() * 255)
-	return "rgba("+red+","+green+","+blue+",0.7)"
+  generated_color = "rgba("+red+","+green+","+blue+",0.7)"
+	return generated_color
 }
 
 function spawn_obj(id) {
@@ -106,13 +130,16 @@ function spawn_obj(id) {
 
 	var h_obj = $('#hit_object').children().clone();
 
-	var obj_id = "btn_id_" + Math.floor(Math.random() * 10000000)
+	var obj_id = "btn_id_" + Math.floor(Math.random() * 10000000);
 
 	h_obj.children('.hit_object').attr('id', obj_id);
 
 	// Pos
 	h_obj.css('top', height);
 	h_obj.css('left', width);
+
+  auto_courser_positions.push({'h':height,'w':width});
+  next_auto_target();
 
   // higher than old obj
   h_obj.children('.hit_object').css('z-index', (100000-generated_obj));
@@ -131,14 +158,18 @@ function spawn_obj(id) {
     generated_obj = 1;
   }
 
-  // hit un-lock
+  // hit
+  if (mod_auto) {
+    setTimeout(function () {
+      h_obj.children('.hit_object').click();
+    },(5/current_ar) * 1000);
+  }
+
+  // un-lock
 	setTimeout(function () {
-		var obj = $('#'+obj_id);
-		if (obj.length == 0) {
-			return;
-		}
     h_obj.children('.hit_object').attr('onclick', 'hit("'+obj_id+'")');
   	h_obj.children('.hit_object').attr('onkeydown', 'console.log(this)');
+
 
 	}, (5/current_ar - 0.4) * 1000);
 
@@ -161,6 +192,19 @@ function spawn_obj(id) {
 
 	}, (5/current_ar + 0.2) * 1000);
 
+}
+
+function next_auto_target() {
+  if (!auto_courser_positions[0]) {
+    return ;
+  }
+  let now = auto_courser_positions[0];
+  let adjustment = 1;
+  if (parseInt(current_ar) > parseInt(current_od)) {
+    adjustment = current_ar - current_od;
+  }
+  $('#auto_courser').css('transition', (4/current_od) * (1/adjustment) + "s linear");
+  $('#auto_courser').css('top', ( parseInt(now['h'])+(400/current_cs/2)-10) ).css('left', ( parseInt(now['w'])+(400/current_cs/2)-10) );
 }
 
 function show_message(content) {
