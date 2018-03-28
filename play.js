@@ -109,8 +109,6 @@ function spawn_obj(id) {
 	var obj_id = "btn_id_" + Math.floor(Math.random() * 10000000)
 
 	h_obj.children('.hit_object').attr('id', obj_id);
-  h_obj.children('.hit_object').attr('onclick', 'hit("'+obj_id+'")');
-	h_obj.children('.hit_object').attr('onkeydown', 'console.log(this)');
 
 	// Pos
 	h_obj.css('top', height);
@@ -133,7 +131,18 @@ function spawn_obj(id) {
     generated_obj = 1;
   }
 
-	// didn't hit?
+  // hit un-lock
+	setTimeout(function () {
+		var obj = $('#'+obj_id);
+		if (obj.length == 0) {
+			return;
+		}
+    h_obj.children('.hit_object').attr('onclick', 'hit("'+obj_id+'")');
+  	h_obj.children('.hit_object').attr('onkeydown', 'console.log(this)');
+
+	}, (5/current_ar - 0.4) * 1000);
+
+  // didn't hit?
 	setTimeout(function () {
 		var obj = $('#'+obj_id);
 		if (obj.length == 0) {
@@ -148,7 +157,7 @@ function spawn_obj(id) {
 		obj.addClass('fail_to_hit');
 		setTimeout(function () {
 			obj.parent().remove();
-		}, 2500);
+		}, 950);
 
 	}, (5/current_ar + 0.2) * 1000);
 
