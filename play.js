@@ -40,20 +40,21 @@ async function start_game() {
 		started = true;
     auto_courser_positions = []
     $('#play_btn').removeClass('btn-success').addClass('btn-danger').text('Stop');
+    if (mod_auto) {
+      $('#auto_courser').show();
+    } else {
+      $('#auto_courser').hide();
+    }
 
 	} else {
     started = false;
     auto_courser_positions = []
     $('#play_btn').removeClass('btn-danger').addClass('btn-success').text('Restart');
     $('.hit_main_class:visible').remove();
+    $('#auto_courser').hide();
     return;
 	}
 
-  if (mod_auto) {
-    $('#auto_courser').show();
-  } else {
-    $('#auto_courser').hide();
-  }
 
   restart_game();
   current_ar = $('#AR').val();
