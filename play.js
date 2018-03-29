@@ -8,7 +8,7 @@ var mod_auto = false;
 var auto_courser_positions = [];
 
 var generated_obj = 0;
-var generated_color = "";
+var generated_style = {"number": 1, "color": "#4f8"};
 var new_combo = 1;
 
 var combo_multiplyer = 1;
@@ -81,7 +81,8 @@ function score_update() {
 function hit(id) {
 	var obj = $('#'+id);
 	obj.removeClass('hit_object');
-	obj.siblings().remove();
+  obj.siblings().remove();
+	obj.children().remove();
 	obj.attr('onclick','');
 	obj.attr('id', "");
 	obj.css('background-color','');
@@ -110,16 +111,18 @@ function hit_fail() {
 
 }
 
-function get_obj_color() {
+function get_circle_style() {
   new_combo = Math.floor(Math.random() * 10);
   if (new_combo < 6) {
-    return generated_color;
+    generated_style.number = generated_style.number + 1;
+    return generated_style;
   }
 	let red = Math.floor(Math.random() * 255)
 	let green = Math.floor(Math.random() * 255)
 	let blue = Math.floor(Math.random() * 255)
-  generated_color = "rgba("+red+","+green+","+blue+",0.7)"
-	return generated_color
+  generated_style.number = 1;
+  generated_style.color = "rgba("+red+","+green+","+blue+",0.7)"
+	return generated_style
 }
 
 function spawn_obj(id) {
@@ -146,11 +149,14 @@ function spawn_obj(id) {
   h_obj.children('.hit_object').css('z-index', (100000-generated_obj));
 
 	// Size
+  h_obj.children('.hit_object').children('div').css('font-size', (150*5/current_cs)+'%');
   h_obj.children().css('height', (400/current_cs)+"px");
-	h_obj.children().css('width', (400/current_cs)+"px");
+  h_obj.children().css('width', (400/current_cs)+"px");
 
 	// color and fadein
-	h_obj.children('.hit_object').css('background-color',get_obj_color());
+  let s = get_circle_style()
+  h_obj.children('.hit_object').css('background-color',s.color);
+	h_obj.children('.hit_object').children('div').text(s.number);
 	h_obj.children('.app_circle').css('animation-duration', String(5/current_ar) + "s");
 
   generated_obj = generated_obj + 1

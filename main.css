@@ -1,13 +1,30 @@
 body {overflow: hidden}
 
 .hit_object {
-	position:absolute;;
+	height: 100px;
+	width: 100px;
+	position:absolute;
 	border-radius: 50%;
 	z-index: 1;
 	border: 2px solid #fff;
 	animation-name: fade_in_animation;
 	animation-duration: .5s;
-	animation-iteration-count: 1
+	animation-iteration-count: 1;
+	font-size: 300%;
+	color:black;
+	padding: auto;
+	cursor: pointer;
+	vertical-align:middle;
+}
+
+.hit_object div {
+	position:relative;
+	width: 100%;
+	top: -27.5%;
+	font-size: 250%;
+	color:black;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	cursor: pointer;
 }
 
 .got_hit {
@@ -47,6 +64,15 @@ body {overflow: hidden}
 	z-index: 10000000;
 }
 
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 @keyframes appro__circle {
 	0%{
 		transform: scale(3.5);
@@ -73,7 +99,7 @@ body {overflow: hidden}
 	0% {
 		position:absolute;
 		border-radius: 50%;
-		border: 2px solid #000;
+		border: 2px solid #fff;
 		transform: scale(1);
 		opacity: 1;
 	}
