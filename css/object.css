@@ -1,0 +1,13 @@
+.object_circle {
+	height: 100px;
+	width: 100px;
+	position:absolute;
+	border-radius: 50%;
+	border: 2px solid #fff;
+}
+
+.object_inner {
+	position:relative;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	cursor: pointer;
+}

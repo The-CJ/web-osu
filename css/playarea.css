@@ -1,0 +1,49 @@
+.playarea {
+  /*border: 3px solid white;*/
+  position: absolute;
+  width:100%;
+  height:100%;
+}
+
+.overlay {
+  background: rgba(255, 0, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.diff-settings {
+  border: 2px solid white;
+  transition: 0.75s;
+}
+
+/* - HUD Positios - */
+.pos_hit {
+  position: relative;
+  top:1vh;
+  left:1vh;
+}
+.pos_miss {
+  position: relative;
+  top:1vh;
+  left:1vh;
+}
+.pos_score {
+  position: absolute;
+  top:1vh;
+  right:1vh;
+}
+.pos_combo {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.pos_message {
+  margin: 0;
+  padding: 0.5em;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}

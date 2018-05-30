@@ -3,76 +3,80 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Bad Game</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/animation.css">
+		<link rel="stylesheet" href="css/object.css">
+		<link rel="stylesheet" href="css/playarea.css">
+		<link rel="stylesheet" href="css/slider.css">
 
 	</head>
-	<body style="background: #222">
+	<body>
 
-		<h2 style="position: fixed;top:1vh;left:1vh;color:white;">Hit: <span id="hit_count">0</span></h2>
-		<h2 style="position: fixed;top:5vh;left:1vh;color:white;">Miss: <span id="fail_count">0</span></h2>
-
-		<h2 style="position: fixed;top:1vh;right:1vh;color:white;"><span id="level_count">0</span> - Score</h2>
-
-		<!-- Diff settings -->
-		<div style="position: fixed;top:20vh;left:1vh;width: 20em;color:white; border: 2px solid transparent">
-			<input type="range" id="AR" min="1" max="20" step="1" value="3" style="width: 80%" oninput="$('#_AR').text(this.value)" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
-			<br>AR: <span id="_AR">3</span><br>
-			<input type="range" id="OD" min="1" max="20" step="1" value="3"	style="width: 80%" oninput="$('#_OD').text(this.value)" title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 20 - 'Help i can not see my playarea D:')">
-			<br>OD: <span id="_OD">3</span><br>
-			<input type="range" id="CS" min="1" max="20" step="1" value="3" style="width: 80%" oninput="$('#_CS').text(this.value)" title="Circle Size (1 - Playarea = Circle | 20 - 'Get my glasses')">
-			<br>CS: <span id="_CS">3</span><br>
-			<br><br>
-			<span title="Disables normal Diff. settings and gets your ass spread">"Fuck me Daddy" - Mode:</span><br>
-			<input title="Disables normal Diff. settings and gets your ass spread" type="checkbox" onchange="if (this.checked) {$('input[type=range]').attr('max', 300).parent().css('border-color','red')} else {$('input[type=range]').attr('max', 20).parent().css('border-color','')}" title="">
-			<br><br>
-			<span title="Look how it should look when you play #GitGud">Auto - Mode:</span><br>
-			<input title="Look how it should look when you play #GitGud" type="checkbox" onchange="if (this.checked) {mod_auto=true} else {mod_auto=false}">
+		<!-- Overlay -->
+		<div class="overlay">
+			<h2 class="pos_hit">Hit: <span id="hit_count">0</span></h2>
+			<h2 class="pos_miss">Miss: <span id="fail_count">0</span></h2>
+			<h2 class="pos_score"><span id="level_count">0</span> - Score</h2>
+			<h1 class="pos_combo">Combo: <br><span id="combo_count">0</span></h2>
+			<div class="pos_message text-right" id="message_space"></div>
 		</div>
 
-		<!-- Hit object -->
-		<div hidden id="hit_object">
-			<div style="position: absolute" class="hit_main_class unselectable">
-				<div class="hit_object text-center"><div></div></div>
-				<div class="app_circle"></div>
-			</div>
+		<div class="playarea">
+
 		</div>
 
-		<!-- Playfield -->
-		<div class="container" style="padding:1em;">
+		<div class="diff-settings centered container" id="diff_settings">
 			<div class="row">
-				<div class="col text-center" style="height: 2em;border:2px solid white;box-sizing: border-box;padding: 0;">
-					<div class="" style="position: absolute;background: green;width: 100%;height: 1.9em">
-						<span style="color:white;">Life Bar</span>
-					</div>
+				<div class="col" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
+					<input type="range" id="AR" min="1" max="20" step="1" value="3" oninput="$('#_AR').text(this.value)">
+					<p>Approach Rate (AR): <span id="_AR">3</span></p>
+				</div>
+				<div class="col"title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 20 - 'Help i can not see my playarea D:')">
+					<input type="range" id="OD" min="1" max="20" step="1" value="3"	oninput="$('#_OD').text(this.value)" >
+					<p>Overall Difficulty (OD): <span id="_OD">3</span></p>
+				</div>
+				<div class="col"  title="Circle Size (1 - Playarea = Circle | 20 - 'Get my glasses')">
+					<input type="range" id="CS" min="1" max="20" step="1" value="3" oninput="$('#_CS').text(this.value)">
+					<p>Circle Size (CS): <span id="_CS">3</span></p>
+				</div>
+				<div class="col"  title="Health Points (1 - 'I'm back in a hour without a problem | 20 - Start Game == Dead')">
+					<input type="range" id="HP" min="1" max="20" step="1" value="3" oninput="$('#_HP').text(this.value)">
+					<p>Health Points (HP): <span id="_HP">3</span></p>
+				</div>
+			</div>
+
+			<div class="row" title="Disables normal Diff. settings and gets your ass spread">
+				<div class="col">
+					<p class="text-right">"Fuck me Daddy" - Mode:</p>
+				</div>
+				<div class="col">
+					<input class="text-left" type="checkbox" onchange="hard_mode(this.checked)">
+				</div>
+			</div>
+
+			<div class="row" title="Look how it should look when you play #GitGud">
+				<div class="col">
+					<p class="text-right">Auto - Mode:</p>
+				</div>
+				<div class="col">
+					<input class="text-left" type="checkbox" onchange="enable_auto(this.checked)">
 				</div>
 			</div>
 
 			<div class="row">
-				<div style="height:100%;width:100%;padding:50px;border:2px solid white;">
-					<div class="col" style="height:77vh;position:relative;top:-1em;left:-1em;" id="playarea">
-						<div id="auto_courser" style="position: absolute;top: 100px;left: 0;display: none" class="curser"></div>
-					</div>
-					<h2 style="position: absolute;color:white;transform: translateX(-35px)">Combo: <span id="combo_count">0</span></h2>
-				</div>
+				<button onclick="init_game()" type="button" class="btn btn-block" style="border-radius:0;">Start</button>
 			</div>
 
-			<div class="row">
-				<div class="col text-center">
-					<div id="message_space" style="width:100%;position:absolute;bottom:4em;">
-
-					</div>
-					<hr>
-					<button type="button" class="btn btn-success" onclick="start_game()" id="play_btn">Play</button>
-				</div>
-			</div>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-		<script src="play.js" charset="utf-8"></script>
+		<script src="js/main.js" charset="utf-8"></script>
+		<script src="js/events.js" charset="utf-8"></script>
+		<script src="js/utils.js" charset="utf-8"></script>
 
 	</body>
 </html>

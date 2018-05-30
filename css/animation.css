@@ -1,0 +1,107 @@
+/* - hit - */
+.animation_hit {
+	animation-name: hit_animation;
+	animation-duration: .25s;
+	animation-iteration-count: 1
+}
+@keyframes hit_animation {
+	0% {
+		position:absolute;
+		border-radius: 50%;
+		border: 2px solid #fff;
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		position:absolute;
+		border-radius: 50%;
+		border: 2px solid #000;
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+/* - fail - */
+.animation_fail {
+	animation-name: fail_animation;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+}
+@keyframes fail_animation {
+	0%{
+		opacity: 1;
+		border-radius: 50%;
+		transform: rotate(0deg);
+	}
+	50%{
+		opacity: 0.50;
+		border-radius: 0%;
+		transform: rotate(45deg) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: rotate(45deg) scale(0);
+	}
+
+}
+
+/* - approache - */
+.animation_approache {
+	animation-name: approache_animation;
+	animation-duration: 1.25s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+@keyframes approache_animation {
+	0%{
+		transform: scale(3.5);
+		opacity: 0;
+	}
+	100%{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* - fade in - */
+.animation_fade {
+	animation-name: fade_animation;
+	/*animation-duration: (gets calculated);*/
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+@keyframes fade_animation {
+	0% {
+		transform: scale(1.05);
+		opacity: 0;
+	}
+	100 {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* - message - */
+.message {
+	animation-name: message_animation;
+	animation-duration: 5s;
+	animation-iteration-count: 1;
+}
+@keyframes message_animation {
+	0%{
+		opacity: 0;
+		margin-right: 0px;
+	}
+	20%{
+		opacity: 1;
+		margin-right: 50px;
+	}
+	80%{
+		opacity: 1;
+		margin-right: 60px;
+	}
+	100%{
+		opacity: 0;
+		margin-right: -10px
+	}
+}

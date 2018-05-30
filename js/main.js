@@ -1,28 +1,22 @@
+// Global need Vars
 var started = false;
-
-var hitcount = 0;
-var failcount = 0;
-var combocount = 0;
+var count_hit = 0;
+var count_fail = 0;
+var count_combo = 0;
 
 var mod_auto = false;
-var auto_courser_positions = [];
-
-var generated_obj = 0;
-var generated_style = {"number": 1, "color": "#4f8"};
-var new_combo = 1;
-
 var combo_multiplyer = 1;
 
 var current_ar = 4;
 var current_od = 4;
 var current_cs = 4;
 
-$('document').ready(function () {
-});
+// Functions
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function init_game() {
+  alert('qwqwqe');
 }
+
 
 function restart_game() {
   hitcount = 0;

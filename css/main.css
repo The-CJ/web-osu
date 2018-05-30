@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	overflow: hidden;
+	background: #222;
+	width: 100vw;
+	height: 100vh;
+}
+
+.curser {
+	border: 2px solid white;
+	transition-timing-function: linear;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	background-color: rgba(255, 255, 255, 0.75);
+	transition: 0.5s;
+	z-index: 10000000;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	color:white;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
