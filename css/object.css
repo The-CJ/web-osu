@@ -1,13 +1,19 @@
-.object_circle {
-	height: 100px;
-	width: 100px;
-	position:absolute;
+.object_approache {
 	border-radius: 50%;
 	border: 2px solid #fff;
+	transform: scale(2.5);
+	transition-timing-function: linear!important;
+	z-index: -1;
+}
+
+.object_circle {
+	border-radius: 50%;
+	border: 1px solid #fff;
+	z-index: 1;
+	cursor: pointer;
 }
 
 .object_inner {
 	position:relative;
 	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-	cursor: pointer;
 }

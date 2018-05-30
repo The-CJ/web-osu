@@ -105,3 +105,32 @@
 		margin-right: -10px
 	}
 }
+
+/* - countdown - */
+.countdown {
+	animation-name: animation_countdown;
+	animation-duration: 4s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+@keyframes animation_countdown {
+	0%{top: 60vh;opacity: 1; font-size: 50vh}
+	100%{top: 0vh;opacity: 0; font-size: 10vh}
+}
+
+/* - fadein - */
+.object_fadein {
+	animation-name: animation_fadein;
+	animation-duration: 0.25s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+
+}
+@keyframes animation_fadein {
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}

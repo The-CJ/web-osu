@@ -9,24 +9,26 @@
 		<link rel="stylesheet" href="css/object.css">
 		<link rel="stylesheet" href="css/playarea.css">
 		<link rel="stylesheet" href="css/slider.css">
+		<link rel="stylesheet" href="css/visual.css">
 
 	</head>
 	<body>
 
 		<!-- Overlay -->
-		<div class="overlay">
+		<div class="overlay unselectable" id="overlay">
 			<h2 class="pos_hit">Hit: <span id="hit_count">0</span></h2>
 			<h2 class="pos_miss">Miss: <span id="fail_count">0</span></h2>
+			<h4 class="pos_stop" id="stop_button">Start: Alt + N</h4>
 			<h2 class="pos_score"><span id="level_count">0</span> - Score</h2>
 			<h1 class="pos_combo">Combo: <br><span id="combo_count">0</span></h2>
 			<div class="pos_message text-right" id="message_space"></div>
 		</div>
 
-		<div class="playarea">
+		<h1 class="countdown centered unselectable" style="font-size:50vh;" id="countdown_space"></h1>
 
-		</div>
+		<div class="playarea unselectable" id="playarea"></div>
 
-		<div class="diff-settings centered container" id="diff_settings">
+		<div class="diff-settings centered container ui-element unselectable" id="diff_settings">
 			<div class="row">
 				<div class="col" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
 					<input type="range" id="AR" min="1" max="20" step="1" value="3" oninput="$('#_AR').text(this.value)">
@@ -48,7 +50,7 @@
 
 			<div class="row" title="Disables normal Diff. settings and gets your ass spread">
 				<div class="col">
-					<p class="text-right">"Fuck me Daddy" - Mode:</p>
+					<p class="text-right">Hard - Mode:</p>
 				</div>
 				<div class="col">
 					<input class="text-left" type="checkbox" onchange="hard_mode(this.checked)">
@@ -65,7 +67,7 @@
 			</div>
 
 			<div class="row">
-				<button onclick="init_game()" type="button" class="btn btn-block" style="border-radius:0;">Start</button>
+				<button onclick="init_start()" type="button" class="btn btn-block" style="border-radius:0;">Start</button>
 			</div>
 
 		</div>
@@ -76,7 +78,9 @@
 
 		<script src="js/main.js" charset="utf-8"></script>
 		<script src="js/events.js" charset="utf-8"></script>
+		<script src="js/object.js" charset="utf-8"></script>
 		<script src="js/utils.js" charset="utf-8"></script>
+		<script src="js/start.js" charset="utf-8"></script>
 
 	</body>
 </html>

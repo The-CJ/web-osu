@@ -10,58 +10,67 @@ var combo_multiplyer = 1;
 var current_ar = 4;
 var current_od = 4;
 var current_cs = 4;
+var current_hp = 4;
+
+var playarea_window = $('#playarea');
 
 // Functions
 
-function init_game() {
-  alert('qwqwqe');
-}
+function init_start() {
 
-
-function restart_game() {
-  hitcount = 0;
-  failcount = 0;
-  combocount = 0;
-  generated_obj=0;
-  $('#level_count').text("0");
-  $('#hit_count').text(hitcount);
-	$('#combo_count').text(combocount);
-  $('#fail_count').text(failcount);
-}
-
-async function start_game() {
-	if (!started) {
-		started = true;
-    auto_courser_positions = []
-    $('#play_btn').removeClass('btn-success').addClass('btn-danger').text('Stop');
-    if (mod_auto) {
-      $('#auto_courser').show();
-    } else {
-      $('#auto_courser').hide();
-    }
-
-	} else {
-    started = false;
-    auto_courser_positions = []
-    $('#play_btn').removeClass('btn-danger').addClass('btn-success').text('Restart');
-    $('.hit_main_class:visible').remove();
-    $('#auto_courser').hide();
+  if (started) {
+    show_message('Allready Running');
     return;
-	}
+  } else {
+    started = true;
+  }
 
+  $('#overlay').css('z-index','-1');
+  $('#diff_settings').css('z-index','-2');
+  $('#playarea').css('z-index','100');
+  $('#stop_button').text('Stop: Alt + Q');
 
-  restart_game();
-  current_ar = $('#AR').val();
-  current_od = $('#OD').val();
-  current_cs = $('#CS').val();
+  $('.ui-element').addClass('prepare-start');
+  var countdown = $('#countdown_space').hide();
 
-	while (started) {
-		spawn_obj();
-		await sleep(4000/current_od);
-	}
+  async function f() {
+    for (var i = 3; i >= 1; i--) {
+      countdown.text(i);
+      await sleep(1000);
+    }
+    countdown.text('Go');
+    await sleep(750);
+    countdown.hide();
+    start_game();
+  }
 
+  setTimeout(function () {
+    $('.ui-element').hide();
+    countdown.show();
+    f();
+  }, 1000);
+}
+
+function init_stop() {
+  if (!started) {
+    show_message('Allready stopped');
+    return;
+  } else {
+    started = false;
+  }
+
+  $('#overlay').css('z-index','1');
+  $('#diff_settings').css('z-index','2');
+  $('#playarea').css('z-index','0');
+
+  $('.ui-element').removeClass('prepare-start');
+  $('#countdown_space').hide();
+  $('#stop_button').text('Start: Alt + N');
+  $('.ui-element').show();
 
 }
+
+// ----
 
 function score_update() {
   let old_score = parseInt($('#level_count').text());
