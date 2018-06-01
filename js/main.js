@@ -18,6 +18,9 @@ var current_od = 3;
 var current_cs = 3;
 var current_hp = 3;
 
+var current_combo_number = 0;
+var current_combo_color = {'r':255, 'g':0, 'b':0};
+
 var playarea_window = $('#playarea');
 
 // Functions
@@ -66,12 +69,6 @@ function init_start() {
 }
 
 function init_stop() {
-  if (!started) {
-    show_message('Allready stopped');
-    return;
-  } else {
-    started = false;
-  }
 
   playarea_window.html('');
 

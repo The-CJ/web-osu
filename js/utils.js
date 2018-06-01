@@ -79,8 +79,6 @@ function update_multiplyer(field, value) {
 
 }
 
-var current_combo_number = 0;
-var current_combo_color = {'r':255, 'g':0, 'b':0};
 function get_circle_style() {
   let generated_style = {};
 

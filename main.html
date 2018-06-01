@@ -31,7 +31,55 @@
 		<!-- endscreen -->
 		<div class="endscreen centered container unselectable" id="endscreen" style="display:none;">
 			<h1 class="text-center">Results</h1>
-			<h3>SOON</h3>
+
+			<div class="row">
+				<div class="col text-right">
+					<p>Successfull Hit:</p>
+				</div>
+				<div class="col text-left">
+					<p id="end_hit">N/A</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col text-right">
+					<p>Missed:</p>
+				</div>
+				<div class="col text-left">
+					<p id="end_miss">N/A</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col text-right">
+					<p>Highest Combo:</p>
+				</div>
+				<div class="col text-left">
+					<p id="end_combo">N/A</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col text-right">
+					<p>Hit Accuracy:</p>
+				</div>
+				<div class="col text-left">
+					<p id="end_acc">N/A</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col text-right">
+					<h3>End Score:</h3>
+				</div>
+				<div class="col text-left">
+					<h3 id="end_score">N/A</h3>
+				</div>
+			</div>
+
+			<div class="row">
+				<button onclick="init_stop()" type="button" class="btn btn-block" style="border-radius:0;">OK</button>
+			</div>
 
 		</div>
 
