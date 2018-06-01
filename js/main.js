@@ -81,20 +81,6 @@ function init_stop() {
 
 // ----
 
-function get_circle_style() {
-  new_combo = Math.floor(Math.random() * 10);
-  if (new_combo < 6) {
-    generated_style.number = generated_style.number + 1;
-    return generated_style;
-  }
-	let red = Math.floor(Math.random() * 255)
-	let green = Math.floor(Math.random() * 255)
-	let blue = Math.floor(Math.random() * 255)
-  generated_style.number = 1;
-  generated_style.color = "rgba("+red+","+green+","+blue+",0.7)"
-	return generated_style
-}
-
 function next_auto_target() {
   if (!auto_courser_positions[0]) {
     return ;

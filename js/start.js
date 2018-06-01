@@ -29,12 +29,20 @@ async function start_game() {
 
 }
 
+function spawn_new_object() {
+  // debug fuction
+  let x = new hit_circle();
+  x.setOn(playarea_window);
+  x.activate();
+}
+
 function reset_game() {
   count_hit = 0;
   count_fail = 0;
   count_combo = 0;
   life_bar = 100;
   score = 0;
+  current_combo_number = 0;
 
   $('#score_count').text('0');
   $('#hit_count').text('0');

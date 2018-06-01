@@ -78,3 +78,26 @@ function update_multiplyer(field, value) {
   $('#combo_multiplyer').text(t);
 
 }
+
+var current_combo_number = 0;
+var current_combo_color = {'r':255, 'g':0, 'b':0};
+function get_circle_style() {
+  let generated_style = {};
+
+  let new_combo = Math.floor(Math.random() * 4);
+  if (new_combo == 1) {
+    // start a new kombo
+    let red = Math.floor(Math.random() * 255);
+    let green = Math.floor(Math.random() * 255);
+    let blue = Math.floor(Math.random() * 255);
+
+    current_combo_color = {'r':red, 'g':green, 'b':blue};
+    current_combo_number = 0;
+  }
+
+  // take data and use it to make a object
+  generated_style.number = current_combo_number + 1;
+  generated_style.color = "rgba("+current_combo_color.r+","+current_combo_color.g+","+current_combo_color.b+",0.7)"
+  current_combo_number += 1;
+  return generated_style
+}

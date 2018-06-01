@@ -19,7 +19,10 @@ class hit_circle {
 
     circle.css('height', (400/current_cs)+'px');
     circle.css('width', (400/current_cs)+'px');
-    circle.css('background', 'rgba(100,0,0,0.8)');
+    let circle_style = get_circle_style();
+    circle.css('background', circle_style.color);
+    circle.append( $('<p class="object_inner centered">').text(circle_style.number) );
+    circle.find('.object_inner').css( 'font-size', ((400/current_cs)*0.50)+'px' )
 
     approache_circle.css('height', (400/current_cs)+'px');
     approache_circle.css('width', (400/current_cs)+'px');
@@ -61,7 +64,7 @@ class hit_circle {
 
     return function clicked() {
       if (!started) { return; }
-      
+
       if (obj.succes) {
         return; // already hit
       }

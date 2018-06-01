@@ -3,17 +3,17 @@
 	border: 2px solid #fff;
 	transform: scale(2.5);
 	transition-timing-function: linear!important;
-	/*z-index: -1;*/
 }
 
 .object_circle {
 	border-radius: 50%;
 	border: 2px solid #fff;
-	/*z-index: 1;*/
 	cursor: pointer;
+	color: white;
+	text-align: center;
+	padding-top: 33%;
 }
 
 .object_inner {
-	position:relative;
-	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
