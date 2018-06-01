@@ -134,3 +134,49 @@
 		opacity: 1;
 	}
 }
+
+/* - hit - */
+.object_hit {
+	opacity: 0;
+
+	animation-name: animation_hit;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+@keyframes animation_hit {
+	0%{
+		opacity: 1;
+		transform: scale(1);
+	}
+	100%{
+		opacity: 0;
+		transform: scale(2);
+	}
+}
+
+/* - fail - */
+.object_fail .object_circle {
+	opacity: 0;
+
+	animation-name: animation_fail;
+	animation-duration: 0.3s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+.object_fail .object_approache {
+	transition: 0s!important;
+	opacity: 0!important;
+}
+@keyframes animation_fail {
+	0%{
+		opacity: 1;
+		border-radius: 50%;
+		transform: translate(-50%, -50%) scale(1) rotate(0deg);
+	}
+	100%{
+		opacity: 0;
+		border-radius: 0%;
+		transform: translate(-50%, -50%) scale(0.6) rotate(120deg);
+	}
+}

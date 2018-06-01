@@ -6,7 +6,7 @@ class hit_circle {
     this.combo_n = null;
     this.size = (400/current_cs)/2;
     this.ar = null;
-    this.success = true;
+    this.success = false;
 
     this.jsquery_Object = null;
     this.generate_jsquery_object();
@@ -19,7 +19,7 @@ class hit_circle {
 
     circle.css('height', (400/current_cs)+'px');
     circle.css('width', (400/current_cs)+'px');
-    circle.css('background', 'rgba(100,0,0,0.2)');
+    circle.css('background', 'rgba(100,0,0,0.8)');
 
     approache_circle.css('height', (400/current_cs)+'px');
     approache_circle.css('width', (400/current_cs)+'px');
@@ -32,7 +32,6 @@ class hit_circle {
     content_box.css('left', this.x+'px');
 
     this.jsquery_Object = content_box;
-    this.jsquery_Object.find('.object_circle').clicked = this.clicked;
     this.jsquery_Object.hide();
 
   }
@@ -45,22 +44,33 @@ class hit_circle {
     this.jsquery_Object.addClass('object_fadein');
     this.jsquery_Object.show();
     this.jsquery_Object.find('.object_approache').css('transform', 'scale(1)')
+
+    // Make object clickable
     await sleep( ((8/current_ar)*1000)*0.8 );
-    this.jsquery_Object.find('.object_circle').on("click", this.clicked );
-    await sleep( ((8/current_ar)*1000)*0.2 ); // OD .
+    this.jsquery_Object.find('.object_circle').on("click", this.clicked_wrapper(this) );
+
+    // After some time, when object got not hit, it counts as failed.
+    await sleep( ((8/current_ar)*1000)*0.3 );
     if (!this.success) {
       this.jsquery_Object.find('.object_circle').off("click");
       this.fail();
     }
   }
 
-  clicked () {
-    this.success = true;
-    alert('SUCCESS');
+  clicked_wrapper (obj) {
+
+    return function clicked() {
+      if (obj.succes) {
+        return; // already hit
+      }
+      obj.success = true;
+      return event_hit(obj);
+    }
+
   }
 
   fail() {
-    alert('FAIL');
+    return event_fail(this);
   }
 
 }
