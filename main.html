@@ -19,55 +19,130 @@
 			<h2 class="pos_hit">Hit: <span id="hit_count">0</span></h2>
 			<h2 class="pos_miss">Miss: <span id="fail_count">0</span></h2>
 			<h4 class="pos_stop" id="stop_button">Start: Alt + N</h4>
-			<h2 class="pos_score"><span id="level_count">0</span> - Score</h2>
+			<h2 class="pos_score"><span id="score_count">0</span> - Score</h2>
 			<h1 class="pos_combo">Combo: <br><span id="combo_count">0</span></h2>
 			<div class="pos_message text-right" id="message_space"></div>
 		</div>
 
+		<!-- countdown -->
 		<h1 class="countdown centered unselectable" style="font-size:50vh;" id="countdown_space"></h1>
 
+		<!-- playarea -->
 		<div class="playarea unselectable" id="playarea"></div>
 
+		<!-- diff settings -->
 		<div class="diff-settings centered container ui-element unselectable" id="diff_settings">
+			<!-- story settings -->
 			<div class="row">
-				<div class="col" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
-					<input type="range" id="AR" min="1" max="20" step="1" value="3" oninput="$('#_AR').text(this.value)">
+				<div class="col collapse" id="story_settings" style="border-bottom: 2px solid white;">
+
+					<h2 class="text-center">Story Difficulty</h2>
+
+					<div class="row">
+						<div class="col text-center">
+							<input type="radio" name="story_diff" value="0" id="dss_0">
+							<label for="dss_0">Easy</label>
+						</div>
+						<div class="col text-center">
+							<input type="radio" name="story_diff" value="1" id="dss_1" checked>
+							<label for="dss_1">Normal</label>
+						</div>
+						<div class="col text-center">
+							<input type="radio" name="story_diff" value="2" id="dss_2">
+							<label for="dss_2">Hard</label>
+						</div>
+						<div class="col text-center">
+							<input type="radio" name="story_diff" value="3" id="dss_3">
+							<label for="dss_3">Master</label>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- diff settings (ar, cs, od) -->
+			<div class="row">
+				<div class="col text-center" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
+					<input type="range" id="AR" min="1" max="20" step="1" value="3" oninput="$('#_AR').text(this.value);update_multiplyer('ar',this.value)">
 					<p>Approach Rate (AR): <span id="_AR">3</span></p>
 				</div>
-				<div class="col"title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 20 - 'Help i can not see my playarea D:')">
-					<input type="range" id="OD" min="1" max="20" step="1" value="3"	oninput="$('#_OD').text(this.value)" >
+				<div class="col text-center"title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 20 - 'Help i can not see my playarea D:')">
+					<input type="range" id="OD" min="1" max="20" step="1" value="3"	oninput="$('#_OD').text(this.value);update_multiplyer('od',this.value)" >
 					<p>Overall Difficulty (OD): <span id="_OD">3</span></p>
 				</div>
-				<div class="col"  title="Circle Size (1 - Playarea = Circle | 20 - 'Get my glasses')">
-					<input type="range" id="CS" min="1" max="20" step="1" value="3" oninput="$('#_CS').text(this.value)">
+				<div class="col text-center"  title="Circle Size (1 - Playarea = Circle | 20 - 'Get my glasses')">
+					<input type="range" id="CS" min="1" max="20" step="1" value="3" oninput="$('#_CS').text(this.value);update_multiplyer('cs',this.value)">
 					<p>Circle Size (CS): <span id="_CS">3</span></p>
 				</div>
-				<div class="col"  title="Health Points (1 - 'I'm back in a hour without a problem | 20 - Start Game == Dead')">
-					<input type="range" id="HP" min="1" max="20" step="1" value="3" oninput="$('#_HP').text(this.value)">
+				<div class="col text-center"  title="Health Points (1 - 'I'm back in a hour without a problem | 20 - Start Game == Dead')">
+					<input type="range" id="HP" min="1" max="20" step="1" value="3" oninput="$('#_HP').text(this.value);update_multiplyer('hp',this.value)">
 					<p>Health Points (HP): <span id="_HP">3</span></p>
 				</div>
 			</div>
 
+			<!-- multiplyer calc -->
+			<div class="row">
+
+				<div class="col text-center">
+					<p>x<span id="multi_ar">1.00</span></p>
+				</div>
+
+				<div class="col text-center">
+					<p>x<span id="multi_od">1.00</span></p>
+				</div>
+
+				<div class="col text-center">
+					<p>x<span id="multi_cs">1.00</span></p>
+				</div>
+
+				<div class="col text-center">
+					<p>x<span id="multi_hp">1.00</span></p>
+				</div>
+
+			</div>
+
+			<!-- multiplyer total -->
+			<div class="row" style="border-bottom: 2px solid white;">
+				<div class="col text-center">
+					<h3>Score Multiplyer: x <span id="combo_multiplyer">1</span></h3>
+				</div>
+			</div>
+
+			<br>
+
+			<!-- story explain -->
+			<div class="row" title="Start easy and increase Diff. settings with each 'level'">
+				<div class="col">
+					<p class="text-right">Story - Mode:</p>
+				</div>
+				<div class="col">
+					<input class="text-left" type="checkbox" onchange="story_mode(this.checked)">
+				</div>
+			</div>
+
+			<!-- hard explain -->
 			<div class="row" title="Disables normal Diff. settings and gets your ass spread">
 				<div class="col">
-					<p class="text-right">Hard - Mode:</p>
+					<p class="text-right">NoLimits - Mode:</p>
 				</div>
 				<div class="col">
 					<input class="text-left" type="checkbox" onchange="hard_mode(this.checked)">
 				</div>
 			</div>
 
+			<!-- auto explain -->
 			<div class="row" title="Look how it should look when you play #GitGud">
 				<div class="col">
 					<p class="text-right">Auto - Mode:</p>
 				</div>
 				<div class="col">
-					<input class="text-left" type="checkbox" onchange="enable_auto(this.checked)">
+					<input class="text-left" type="checkbox" onchange="enable_auto(this.checked);update_multiplyer();">
 				</div>
 			</div>
 
+			<!-- start button -->
 			<div class="row">
-				<button onclick="init_start()" type="button" class="btn btn-block" style="border-radius:0;">Start</button>
+				<button onclick="init_start()" type="button" class="btn btn-block" style="border-radius:0;" id="start_button">Start</button>
 			</div>
 
 		</div>

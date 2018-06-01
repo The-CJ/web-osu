@@ -5,7 +5,11 @@ var count_fail = 0;
 var count_combo = 0;
 var life_bar = 100;
 
+var score = 0;
+
 var mod_auto = false;
+var mod_story = false;
+
 var combo_multiplyer = 1;
 
 var current_ar = 3;
@@ -76,15 +80,6 @@ function init_stop() {
 }
 
 // ----
-
-function score_update() {
-  let old_score = parseInt($('#level_count').text());
-  let combo = parseInt($('#combo_count').text());
-  add_ = (300 * ((100+combo-1)/100)) * combo_multiplyer;
-  new_score = Math.floor(old_score + add_);
-
-  $('#level_count').text(new_score);
-}
 
 function get_circle_style() {
   new_combo = Math.floor(Math.random() * 10);
