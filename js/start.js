@@ -43,6 +43,7 @@ function reset_game() {
   life_bar = 100;
   score = 0;
   current_combo_number = 0;
+  count_highest_combo = 0;
 
   object_on_screen = [];
 

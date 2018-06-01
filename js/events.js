@@ -28,6 +28,9 @@ function event_hit(obj) {
 
   count_combo += 1;
   $('#combo_count').text(count_combo);
+  if (count_combo > count_highest_combo) {
+    count_highest_combo = count_combo;
+  }
 
   life_bar = life_bar + (1 * current_hp / 0.75  * (count_combo+1 / 10));
 
@@ -54,4 +57,11 @@ function event_fail(obj) {
 function event_gameover() {
   started = false;
   playarea_window.html('');
+
+  $('.lifebar').css('opacity', '0');
+  $('#overlay').css('opacity', '0');
+  playarea_window.css('z-index', '0');
+
+
+  $('#endscreen').show();
 }

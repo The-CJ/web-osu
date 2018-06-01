@@ -7,11 +7,13 @@
 }
 
 .overlay {
+  transition: 1s;
   background: rgba(255, 0, 0, 0);
   width: 100vw;
   height: 100vh;
   position: absolute;
   z-index: 1;
+  opacity: 0;
 }
 
 .diff-settings {
@@ -33,15 +35,20 @@
   border-right: none;
   text-align: right;
 }
-
 .inner_lifebar {
   transition: 0.75s;
   background: green;
   height: 3.5vh;
   width: 0%;
+  max-width: 100%;
   position: absolute;
   right: 0;
   transition-timing-function: linear;
+}
+
+.endscreen {
+  z-index: 10;
+  border: 2px solid white;
 }
 
 /* - HUD Positios - */

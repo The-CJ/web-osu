@@ -3,6 +3,7 @@ var started = false;
 var count_hit = 0;
 var count_fail = 0;
 var count_combo = 0;
+var count_highest_combo = 0;
 var life_bar = 100;
 
 var score = 0;
@@ -32,6 +33,9 @@ function init_start() {
 
   reset_game();
 
+  $('#endscreen').hide();
+
+  $('#overlay').css('opacity', '1');
   $('.lifebar').css('opacity', '1');
   $('.inner_lifebar').css('transition', '3s');
   $('.inner_lifebar').css('width', '100%');
@@ -71,6 +75,9 @@ function init_stop() {
 
   playarea_window.html('');
 
+  $('#endscreen').hide();
+
+  $('#overlay').css('opacity', '0');
   $('.inner_lifebar').css('transition', '3s');
   $('.inner_lifebar').css('width', '0%');
   $('.lifebar').css('opacity', '0');

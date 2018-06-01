@@ -108,8 +108,8 @@ async function lifebar_drain() {
   lifebar_obj.css('width', "100%");
   while (started) {
     life_bar = life_bar - (0.06 * current_hp );
-    if (life_bar > 100) {
-      life_bar = 100;
+    if (life_bar > 125) {
+      life_bar = 125;
     }
     lifebar_obj.css('width', life_bar+'%');
     if (life_bar <= 0) {
