@@ -156,6 +156,10 @@
 }
 
 /* - fail - */
+.object_fail {
+		z-index: -5;
+}
+
 .object_fail .object_circle {
 	opacity: 0;
 

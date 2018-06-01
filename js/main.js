@@ -7,10 +7,10 @@ var count_combo = 0;
 var mod_auto = false;
 var combo_multiplyer = 1;
 
-var current_ar = 4;
-var current_od = 4;
-var current_cs = 4;
-var current_hp = 4;
+var current_ar = 3;
+var current_od = 3;
+var current_cs = 3;
+var current_hp = 3;
 
 var playarea_window = $('#playarea');
 

@@ -13,7 +13,6 @@ async function start_game() {
     let x = new hit_circle();
     x.setOn(playarea_window);
     x.activate();
-		// spawn_obj();
 		await sleep(4000/current_od);
 	}
 

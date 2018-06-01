@@ -37,7 +37,7 @@ class hit_circle {
   }
 
   setOn (target) {
-    target.append(this.jsquery_Object);
+    target.prepend(this.jsquery_Object);
   }
 
   async activate() {
