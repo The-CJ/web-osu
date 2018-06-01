@@ -2,10 +2,7 @@ class hit_circle {
   constructor() {
     this.y = Math.floor(Math.random() * playarea_window.height());
   	this.x = Math.floor(Math.random() * playarea_window.width());
-    this.color = null;
-    this.combo_n = null;
     this.size = (400/current_cs)/2;
-    this.ar = null;
     this.success = false;
 
     this.jsquery_Object = null;

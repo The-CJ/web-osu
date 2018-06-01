@@ -29,7 +29,7 @@ function event_hit(obj) {
   count_combo += 1;
   $('#combo_count').text(count_combo);
 
-  // TODO: regenerate life bar
+  life_bar = life_bar + (1 * current_hp / 0.75  * (count_combo+1 / 10));
 
 }
 
@@ -47,6 +47,11 @@ function event_fail(obj) {
   count_combo = 0;
   $('#combo_count').text('0');
 
-  // TODO: hurt life bar
+  life_bar = life_bar - (1 * current_hp);
 
+}
+
+function event_gameover() {
+  started = false;
+  playarea_window.html('');
 }

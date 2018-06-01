@@ -32,6 +32,9 @@ function init_start() {
 
   reset_game();
 
+  $('.lifebar').css('opacity', '1');
+  $('.inner_lifebar').css('transition', '3s');
+  $('.inner_lifebar').css('width', '100%');
   $('#overlay').css('z-index','-1');
   $('#diff_settings').css('z-index','-2');
   $('#playarea').css('z-index','100');
@@ -68,6 +71,9 @@ function init_stop() {
 
   playarea_window.html('');
 
+  $('.inner_lifebar').css('transition', '3s');
+  $('.inner_lifebar').css('width', '0%');
+  $('.lifebar').css('opacity', '0');
   $('#overlay').css('z-index','1');
   $('#diff_settings').css('z-index','2');
   $('#playarea').css('z-index','0');
@@ -77,19 +83,4 @@ function init_stop() {
   $('#stop_button').text('Start: Alt + N');
   $('.ui-element').show();
 
-}
-
-// ----
-
-function next_auto_target() {
-  if (!auto_courser_positions[0]) {
-    return ;
-  }
-  let now = auto_courser_positions[0];
-  let adjustment = 1;
-  if (parseInt(current_ar) > parseInt(current_od)) {
-    adjustment = current_ar - current_od;
-  }
-  $('#auto_courser').css('transition', (4/current_od) * (1/adjustment) + "s linear");
-  $('#auto_courser').css('top', ( parseInt(now['h'])+(400/current_cs/2)-10) ).css('left', ( parseInt(now['w'])+(400/current_cs/2)-10) );
 }

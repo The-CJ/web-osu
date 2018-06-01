@@ -20,6 +20,30 @@
   z-index: 2;
 }
 
+.lifebar {
+  opacity: 0;
+  transition: 2s;
+  position: absolute;
+  bottom: 1vh;
+  right: 0;
+  width: 80vw;
+  height: 4vh;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid white;
+  border-right: none;
+  text-align: right;
+}
+
+.inner_lifebar {
+  transition: 0.75s;
+  background: green;
+  height: 3.5vh;
+  width: 0%;
+  position: absolute;
+  right: 0;
+  transition-timing-function: linear;
+}
+
 /* - HUD Positios - */
 .pos_hit {
   position: relative;
@@ -47,7 +71,7 @@
   margin: 0;
   padding: 0.5em;
   position: absolute;
-  bottom: 5px;
+  bottom: 6vh;
   right: 5px;
 }
 .pos_stop {

@@ -5,7 +5,7 @@ async function start_game() {
   current_cs = $('#CS').val();
   current_hp = $('#HP').val();
 
-  // TODO: start life drain
+  lifebar_drain();
 
   combo_multiplyer = (
     ( 1 / (3/current_ar) ) *
@@ -43,6 +43,8 @@ function reset_game() {
   life_bar = 100;
   score = 0;
   current_combo_number = 0;
+
+  object_on_screen = [];
 
   $('#score_count').text('0');
   $('#hit_count').text('0');

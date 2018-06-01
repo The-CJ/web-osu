@@ -101,3 +101,20 @@ function get_circle_style() {
   current_combo_number += 1;
   return generated_style
 }
+
+async function lifebar_drain() {
+  var lifebar_obj = $('.inner_lifebar');
+  lifebar_obj.removeAttr('style');
+  lifebar_obj.css('width', "100%");
+  while (started) {
+    life_bar = life_bar - (0.06 * current_hp );
+    if (life_bar > 100) {
+      life_bar = 100;
+    }
+    lifebar_obj.css('width', life_bar+'%');
+    if (life_bar <= 0) {
+      return event_gameover();
+    }
+    await sleep(36);
+  }
+}
