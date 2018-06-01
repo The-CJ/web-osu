@@ -60,6 +60,8 @@ class hit_circle {
   clicked_wrapper (obj) {
 
     return function clicked() {
+      if (!started) { return; }
+      
       if (obj.succes) {
         return; // already hit
       }
@@ -70,6 +72,7 @@ class hit_circle {
   }
 
   fail() {
+    if (!started) { return; }
     return event_fail(this);
   }
 

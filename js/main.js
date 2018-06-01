@@ -3,7 +3,7 @@ var started = false;
 var count_hit = 0;
 var count_fail = 0;
 var count_combo = 0;
-var life_bar = 1000;
+var life_bar = 100;
 
 var mod_auto = false;
 var combo_multiplyer = 1;
@@ -25,6 +25,8 @@ function init_start() {
   } else {
     started = true;
   }
+
+  reset_game();
 
   $('#overlay').css('z-index','-1');
   $('#diff_settings').css('z-index','-2');
@@ -59,6 +61,8 @@ function init_stop() {
   } else {
     started = false;
   }
+
+  playarea_window.html('');
 
   $('#overlay').css('z-index','1');
   $('#diff_settings').css('z-index','2');
