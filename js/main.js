@@ -3,6 +3,7 @@ var started = false;
 var count_hit = 0;
 var count_fail = 0;
 var count_combo = 0;
+var life_bar = 1000;
 
 var mod_auto = false;
 var combo_multiplyer = 1;
