@@ -143,19 +143,19 @@
 
 					<div class="row">
 						<div class="col text-center">
-							<input type="radio" name="story_diff" value="0" id="dss_0">
+							<input type="radio" name="story_diff" value="1" id="dss_0">
 							<label for="dss_0">Easy</label>
 						</div>
 						<div class="col text-center">
-							<input type="radio" name="story_diff" value="1" id="dss_1" checked>
+							<input type="radio" name="story_diff" value="3" id="dss_1" checked>
 							<label for="dss_1">Normal</label>
 						</div>
 						<div class="col text-center">
-							<input type="radio" name="story_diff" value="2" id="dss_2">
+							<input type="radio" name="story_diff" value="5" id="dss_2">
 							<label for="dss_2">Hard</label>
 						</div>
 						<div class="col text-center">
-							<input type="radio" name="story_diff" value="3" id="dss_3">
+							<input type="radio" name="story_diff" value="7" id="dss_3">
 							<label for="dss_3">Master</label>
 						</div>
 					</div>
@@ -163,22 +163,22 @@
 				</div>
 			</div>
 
-			<!-- diff settings (ar, cs, od) -->
+			<!-- diff settings (ar, cs, od, hp) -->
 			<div class="row">
 				<div class="col text-center" title="Approach Rate (1 - Slow as fuck | 20 - Holy fuuuu)">
-					<input type="range" id="AR" min="1" max="20" step="1" value="3" oninput="$('#_AR').text(this.value);update_multiplyer('ar',this.value)">
+					<input type="range" id="AR" min="1" max="20" step="0.1" value="3" oninput="$('#_AR').text(this.value);update_multiplyer('ar',this.value)">
 					<p>Approach Rate (AR): <span id="_AR">3</span></p>
 				</div>
 				<div class="col text-center"title="Overall Diff. or 'Spawnrate' (1 - Zzzzz | 20 - 'Help i can not see my playarea D:')">
-					<input type="range" id="OD" min="1" max="20" step="1" value="3"	oninput="$('#_OD').text(this.value);update_multiplyer('od',this.value)" >
+					<input type="range" id="OD" min="1" max="20" step="0.1" value="3"	oninput="$('#_OD').text(this.value);update_multiplyer('od',this.value)" >
 					<p>Overall Difficulty (OD): <span id="_OD">3</span></p>
 				</div>
 				<div class="col text-center"  title="Circle Size (1 - Playarea = Circle | 20 - 'Get my glasses')">
-					<input type="range" id="CS" min="1" max="20" step="1" value="3" oninput="$('#_CS').text(this.value);update_multiplyer('cs',this.value)">
+					<input type="range" id="CS" min="1" max="20" step="0.1" value="3" oninput="$('#_CS').text(this.value);update_multiplyer('cs',this.value)">
 					<p>Circle Size (CS): <span id="_CS">3</span></p>
 				</div>
 				<div class="col text-center"  title="Health Points (1 - 'I'm back in a hour without a problem | 20 - Start Game == Dead')">
-					<input type="range" id="HP" min="1" max="20" step="1" value="3" oninput="$('#_HP').text(this.value);update_multiplyer('hp',this.value)">
+					<input type="range" id="HP" min="1" max="20" step="0.1" value="3" oninput="$('#_HP').text(this.value);update_multiplyer('hp',this.value)">
 					<p>Health Points (HP): <span id="_HP">3</span></p>
 				</div>
 			</div>
@@ -219,7 +219,7 @@
 					<p class="text-right">Story - Mode:</p>
 				</div>
 				<div class="col">
-					<input class="text-left" type="checkbox" onchange="story_mode(this.checked)">
+					<input class="text-left" type="checkbox" onchange="story_mode(this.checked)" id="button_story">
 				</div>
 			</div>
 
