@@ -29,6 +29,8 @@ var end_window = $('#endscreen');
 var countdown_window = $('#countdown_space');
 var submit_window = $('#score_submit');
 
+var all_objects = [];
+
 // Functions
 
 function init_start() {
@@ -46,6 +48,10 @@ function init_start() {
     mod_story = true;
     show_message('Story Mode enabled');
     show_message('User Diff. setting get ignored');
+  }
+
+  if ($('#button_auto').is(':checked')) {
+    mod_auto = true;
   }
 
   end_window.hide();

@@ -26,6 +26,10 @@ function event_hit(obj) {
     ( 1 / (3/current_cs) ) *
     ( 1 / (3/current_hp) )
   )
+  if (mod_auto) {
+    all_objects.shift();
+    combo_multiplyer = combo_multiplyer * 0
+  }
 
   score += 300 * (count_combo/100+1) * combo_multiplyer;
   $('#score_count').text(Math.round(score));

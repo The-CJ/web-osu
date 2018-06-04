@@ -17,3 +17,13 @@
 .object_inner {
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+.auto_curser {
+	transition-timing-function: linear!important;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	background: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	width: 4vh;
+	height: 4vh;
+}
