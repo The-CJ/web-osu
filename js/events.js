@@ -1,3 +1,9 @@
+var current_mouse_pos = {'x':0, 'y':0};
+$(document).bind('mousemove',function(mouseMoveEvent){
+  current_mouse_pos.x = mouseMoveEvent.pageX;
+  current_mouse_pos.y = mouseMoveEvent.pageY;
+});
+
 document.addEventListener('keydown', (event) => {
 
   if (event.altKey && event.key == 'q') {
@@ -6,8 +12,10 @@ document.addEventListener('keydown', (event) => {
   if (event.altKey && event.key == 'n') {
     init_start()
   }
-  if (event.altKey && event.key == 's') {
-    console.log('S');
+  if (event.key == 'x' || event.key == 'y') {
+    console.log(current_mouse_pos.x);
+    console.log(current_mouse_pos.y);
+    document.elementFromPoint(current_mouse_pos.x, current_mouse_pos.y).click();
   }
 
 }, false);
@@ -91,7 +99,7 @@ function event_submit() {
   end_window.css('z-index', '-1').hide();
   submit_window.css('z-index', '100').show();
 
-  $('#submitscore').val(score);
+  $('#submitscore').val(score.toLocaleString());
 
 
 }
