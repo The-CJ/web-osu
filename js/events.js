@@ -20,6 +20,13 @@ function event_hit(obj) {
     delete obj;
   }, 200);
 
+  combo_multiplyer = (
+    ( 1 / (3/current_ar) ) *
+    ( 1 / (3/current_od) ) *
+    ( 1 / (3/current_cs) ) *
+    ( 1 / (3/current_hp) )
+  )
+
   score += 300 * (count_combo/100+1) * combo_multiplyer;
   $('#score_count').text(Math.round(score));
 

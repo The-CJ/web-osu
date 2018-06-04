@@ -5,6 +5,17 @@ async function start_game() {
   current_cs = $('#CS').val();
   current_hp = $('#HP').val();
 
+  story_diff = $('input[name=story_diff]:checked').val();
+
+  if (mod_story) {
+    current_ar = 2;
+    current_od = 2;
+    current_cs = 2;
+    current_hp = 2;
+
+    start_story();
+  }
+
   lifebar_drain();
 
   combo_multiplyer = (
@@ -52,4 +63,32 @@ function reset_game() {
   $('#fail_count').text('0');
   $('#combo_count').text('0');
   // TODO: lifebar update
+}
+
+async function start_story() {
+
+  for (var level = 1; level <= 10; level++) {
+
+    await sleep(750*60*(level/5) );
+
+    current_ar += (0.5 * story_diff);
+    current_od += (0.5 * story_diff);
+    current_cs += (0.2 * story_diff);
+    current_hp += (0.7 * story_diff);
+
+    show_message('Level: '+(level);
+    show_message('AR: ' + current_ar.toFixed(1) + "(+"+(0.4 * story_diff).toFixed(1)+")" );
+    show_message('OD: ' + current_od.toFixed(1) + "(+"+(0.4 * story_diff).toFixed(1)+")" );
+    show_message('CS: ' + current_cs.toFixed(1) + "(+"+(0.1 * story_diff).toFixed(1)+")" );
+    show_message('HP: ' + current_hp.toFixed(1) + "(+"+(0.7 * story_diff).toFixed(1)+")" );
+
+  }
+
+  await sleep(750*60*2 );
+
+  started = false;
+
+  await sleep(1500);
+  event_gameover();
+
 }

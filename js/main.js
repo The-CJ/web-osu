@@ -10,6 +10,7 @@ var score = 0;
 
 var mod_auto = false;
 var mod_story = false;
+var story_diff = 0;
 
 var combo_multiplyer = 1;
 
@@ -41,8 +42,13 @@ function init_start() {
 
   reset_game();
 
-  end_window.hide();
+  if ($('#button_story').is(':checked')) {
+    mod_story = true;
+    show_message('Story Mode enabled');
+    show_message('User Diff. setting get ignored');
+  }
 
+  end_window.hide();
   overlay_window.css('opacity', '1');
   overlay_window.css('z-index','-1');
   diff_window.css('z-index','-2');
