@@ -116,3 +116,9 @@ async function lifebar_drain() {
     await sleep(36);
   }
 }
+
+function submit_score() {
+
+  show_message('TO DO: Score Submit');
+
+}

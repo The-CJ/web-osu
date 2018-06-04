@@ -14,6 +14,8 @@
 	</head>
 	<body>
 
+		<div class="pos_message text-right" id="message_space"></div>
+
 		<!-- Overlay -->
 		<div class="overlay unselectable" id="overlay">
 			<h2 class="pos_hit">Hit: <span id="hit_count">0</span></h2>
@@ -21,7 +23,6 @@
 			<h4 class="pos_stop" id="stop_button">Start: Alt + N</h4>
 			<h2 class="pos_score"><span id="score_count">0</span> - Score</h2>
 			<h1 class="pos_combo">Combo: <br><span id="combo_count">0</span></h2>
-			<div class="pos_message text-right" id="message_space"></div>
 			<div class="lifebar"><div class="inner_lifebar"></div></div>
 		</div>
 
@@ -32,6 +33,7 @@
 		<div class="endscreen centered container unselectable" id="endscreen" style="display:none;">
 			<h1 class="text-center">Results</h1>
 
+			<!-- successfull hit -->
 			<div class="row">
 				<div class="col text-right">
 					<p>Successfull Hit:</p>
@@ -41,6 +43,7 @@
 				</div>
 			</div>
 
+			<!-- missed -->
 			<div class="row">
 				<div class="col text-right">
 					<p>Missed:</p>
@@ -50,6 +53,7 @@
 				</div>
 			</div>
 
+			<!-- highest combo -->
 			<div class="row">
 				<div class="col text-right">
 					<p>Highest Combo:</p>
@@ -59,6 +63,7 @@
 				</div>
 			</div>
 
+			<!-- hit accuracy -->
 			<div class="row">
 				<div class="col text-right">
 					<p>Hit Accuracy:</p>
@@ -68,6 +73,7 @@
 				</div>
 			</div>
 
+			<!-- end score -->
 			<div class="row">
 				<div class="col text-right">
 					<h3>End Score:</h3>
@@ -77,8 +83,49 @@
 				</div>
 			</div>
 
+			<!-- subbmit score button -->
+			<div class="row">
+				<button onclick="event_submit()" type="button" class="btn btn-block" style="border-radius:0;margin-bottom:5px;">Submit Score</button>
+			</div>
+
+			<!-- ok button -->
 			<div class="row">
 				<button onclick="init_stop()" type="button" class="btn btn-block" style="border-radius:0;">OK</button>
+			</div>
+
+		</div>
+
+		<!-- score submit -->
+		<div class="score_submit centered container unselectable" id="score_submit" style="display:none;">
+
+			<!-- username -->
+			<div class="row" style="margin:0.25em;">
+				<div class="col text-right">
+					<p>Username: </p>
+				</div>
+				<div class="col text-left">
+					<input class="input-field" type="text" placeholder="Name" id="submitname">
+				</div>
+			</div>
+
+			<!-- username -->
+			<div class="row" style="margin:0.25em;">
+				<div class="col text-right">
+					<p>Score: </p>
+				</div>
+				<div class="col text-left">
+					<input class="input-field" type="text" disabled id="submitscore">
+				</div>
+			</div>
+
+			<!-- ok button -->
+			<div class="row">
+				<button onclick="submit_score()" type="button" class="btn btn-block" style="border-radius:0;">Submit</button>
+			</div>
+
+			<!-- subbmit score button -->
+			<div class="row">
+				<button onclick="init_stop()" type="button" class="btn btn-block" style="border-radius:0;margin-top:5px;">Cancle</button>
 			</div>
 
 		</div>

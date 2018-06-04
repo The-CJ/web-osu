@@ -58,17 +58,29 @@ function event_gameover() {
   started = false;
   playarea_window.html('');
 
+  overlay_window.css('z-index', '-1');
+  end_window.css('z-index', '100');
+  diff_window.hide();
+  playarea_window.css('z-index', '-1');
   $('.lifebar').css('opacity', '0');
-  $('#overlay').css('opacity', '0');
-  playarea_window.css('z-index', '0');
 
   // show endscreen with results
-  let e = $('#endscreen').show();
+  let e = end_window.show();
 
   e.find('#end_combo').text(count_highest_combo);
   e.find('#end_hit').text(count_hit);
   e.find('#end_miss').text(count_fail);
   e.find('#end_acc').text(Number( (100 * count_hit) / (count_hit+count_fail) ).toFixed(1)+"%");
-  e.find('#end_score').text(score.toLocaleString());
+  e.find('#end_score').text(Number(Math.round(score)).toLocaleString());
+
+}
+
+function event_submit() {
+
+  end_window.css('z-index', '-1').hide();
+  submit_window.css('z-index', '100').show();
+
+  $('#submitscore').val(score);
+
 
 }

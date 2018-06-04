@@ -22,6 +22,11 @@ var current_combo_number = 0;
 var current_combo_color = {'r':255, 'g':0, 'b':0};
 
 var playarea_window = $('#playarea');
+var overlay_window = $('#overlay');
+var diff_window = $('#diff_settings');
+var end_window = $('#endscreen');
+var countdown_window = $('#countdown_space');
+var submit_window = $('#score_submit');
 
 // Functions
 
@@ -36,54 +41,59 @@ function init_start() {
 
   reset_game();
 
-  $('#endscreen').hide();
+  end_window.hide();
 
-  $('#overlay').css('opacity', '1');
+  overlay_window.css('opacity', '1');
+  overlay_window.css('z-index','-1');
+  diff_window.css('z-index','-2');
+  playarea_window.css('z-index','100');
+
   $('.lifebar').css('opacity', '1');
   $('.inner_lifebar').css('transition', '3s');
   $('.inner_lifebar').css('width', '100%');
-  $('#overlay').css('z-index','-1');
-  $('#diff_settings').css('z-index','-2');
-  $('#playarea').css('z-index','100');
+
   $('#stop_button').text('Stop: Alt + Q');
 
   $('.ui-element').addClass('prepare-start');
-  var countdown = $('#countdown_space').hide();
+  countdown_window.hide();
 
   async function f() {
     for (var i = 3; i >= 1; i--) {
-      countdown.text(i);
+      countdown_window.text(i);
       await sleep(1000);
     }
-    countdown.text('Go');
+    countdown_window.text('Go');
     await sleep(750);
-    countdown.hide();
+    countdown_window.hide();
     start_game();
   }
 
   setTimeout(function () {
     $('.ui-element').hide();
-    countdown.show();
+    countdown_window.show();
     f();
   }, 1000);
 }
 
 function init_stop() {
+  started = false;
 
   playarea_window.html('');
 
-  $('#endscreen').hide();
+  end_window.hide();
 
-  $('#overlay').css('opacity', '0');
+  submit_window.hide();
+  overlay_window.css('opacity', '0');
+  overlay_window.css('z-index','1');
+  playarea_window.css('z-index','0');
+  diff_window.css('z-index','2');
+  countdown_window.hide();
+
   $('.inner_lifebar').css('transition', '3s');
   $('.inner_lifebar').css('width', '0%');
   $('.lifebar').css('opacity', '0');
-  $('#overlay').css('z-index','1');
-  $('#diff_settings').css('z-index','2');
-  $('#playarea').css('z-index','0');
 
   $('.ui-element').removeClass('prepare-start');
-  $('#countdown_space').hide();
   $('#stop_button').text('Start: Alt + N');
   $('.ui-element').show();
 
