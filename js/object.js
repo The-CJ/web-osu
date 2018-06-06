@@ -1,3 +1,5 @@
+var screen_size = 1;
+
 class hit_circle {
   constructor() {
     this.y = Math.floor(Math.random() * playarea_window.height());
@@ -14,15 +16,21 @@ class hit_circle {
     let circle = $('<div class="object_circle centered">');
     let approache_circle = $('<div class="object_approache ">');
 
-    circle.css('height', (400/current_cs)+'px');
-    circle.css('width', (400/current_cs)+'px');
+    if ($(document).height() > $(document).width()) {
+      screen_size = 1 * $(document).width() / screen.width;
+    } else {
+      screen_size = 1 * $(document).height() / screen.height;
+    }
+
+    circle.css('height', (400/current_cs*screen_size)+'px');
+    circle.css('width', (400/current_cs*screen_size)+'px');
     let circle_style = get_circle_style();
     circle.css('background', circle_style.color);
     circle.append( $('<p class="object_inner centered">').text(circle_style.number) );
-    circle.find('.object_inner').css( 'font-size', ((400/current_cs)*0.50)+'px' )
+    circle.find('.object_inner').css( 'font-size', ((400/current_cs)*0.50*screen_size)+'px' )
 
-    approache_circle.css('height', (400/current_cs)+'px');
-    approache_circle.css('width', (400/current_cs)+'px');
+    approache_circle.css('height', (400/current_cs*screen_size)+'px');
+    approache_circle.css('width', (400/current_cs*screen_size)+'px');
     approache_circle.css('transition', (8/current_ar)+'s');
 
     content_box.append(approache_circle);

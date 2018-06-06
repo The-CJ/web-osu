@@ -109,9 +109,9 @@ async function start_auto() {
       current = all_objects[0];
       if (current == last_moved) {await sleep(2); continue;}
       auto.css('transition', ((4/current_od)*0.8)+'s');
-      let aY = current.y + (400/current_cs/2) - (auto.height()/2);
+      let aY = current.y + (400/current_cs/2*screen_size) - (auto.height()/2);
       auto.css('top', aY+'px');
-      let aX = current.x + (400/current_cs/2) - (auto.width()/2);
+      let aX = current.x + (400/current_cs/2*screen_size) - (auto.width()/2);
       auto.css('left', aX+'px');
       last_moved = current;
     }
