@@ -134,7 +134,7 @@ function submit_score() {
   sub['count_fail'] = count_fail;
   sub['highest_combo'] = count_highest_combo;
 
-  $.post('http://phaaze.net/api/games/webosu', sub ).always(init_stop);
+  $.post('http://phaaze.net/api/games/webosu', sub ).done(init_stop);
 
 
 }

@@ -64,12 +64,14 @@ function reset_game() {
   $('#hit_count').text('0');
   $('#fail_count').text('0');
   $('#combo_count').text('0');
-  // TODO: lifebar update
 }
 
 async function start_story() {
 
   for (var level = 1; level <= 10; level++) {
+    if (!started) {
+      return;
+    }
 
     await sleep(750*60*(level/5) );
 
@@ -84,10 +86,6 @@ async function start_story() {
     show_message('CS: ' + current_cs.toFixed(1) + "(+"+(0.075 * story_diff).toFixed(1)+")" );
     show_message('HP: ' + current_hp.toFixed(1) + "(+"+(0.7 * story_diff).toFixed(1)+")" );
 
-  }
-
-  if (!stated) {
-    return;
   }
 
   await sleep(750*60*2 );

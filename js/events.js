@@ -133,10 +133,13 @@ function event_show_leaderboard(mode) {
       if (t >= 10) {
         return;
       }
-      let e = $('<div class="row"><div class="col m text-center"><h3></h3></div><div class="col n text-right"><h3></h3></div><div class="col s"><h3></h3></div><div>');
+      let e = $('<div class="row"><div class="col m text-right"><h3></h3></div><div class="col n text-right"><h3></h3></div><div class="col s"><h3></h3></div><div>');
       e.find('.n h3').text(entry['name']);
-      e.find('.m h3').text('#'+t);
-      e.find('.s h3').text(Math.round(Number(entry['score'])).toLocaleString());
+      let al = parseInt(entry['count_hit']) + parseInt(entry['count_fail']);
+      let combo_c = ' (' + entry['highest_combo'] + "/" + al + ")";
+      let acc_c = " ["+ Number(entry['count_hit']*100/al).toFixed(2)+"%]";
+      e.find('.m h3').text('#'+t + combo_c + acc_c);
+      e.find('.s h3').text(Math.round(Number(entry['score'])).toLocaleString() );
       x.append(e);
       t = t + 1;
     }
