@@ -28,6 +28,7 @@ var diff_window = $('#diff_settings');
 var end_window = $('#endscreen');
 var countdown_window = $('#countdown_space');
 var submit_window = $('#score_submit');
+var score_window = $('#scorescreen');
 
 var all_objects = [];
 
@@ -95,6 +96,7 @@ function init_stop() {
   end_window.hide();
 
   submit_window.hide();
+  score_window.hide();
   overlay_window.css('opacity', '0');
   overlay_window.css('z-index','1');
   playarea_window.css('z-index','0');

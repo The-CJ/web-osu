@@ -95,6 +95,22 @@
 
 		</div>
 
+		<!-- scorescreen -->
+		<div class="scorescreen centered container unselectable" id="scorescreen" style="display:none;">
+			<h1 class="text-center">Leaderboard Top 10</h1>
+			<input id="leaderb" type="checkbox" oninput="event_show_leaderboard(this.checked)" value="1">
+			<label for="leaderb">Endless/Story</label>
+
+			<div class="content_">
+
+			</div>
+
+			<div class="row">
+				<button onclick="init_stop()" type="button" class="btn btn-block" style="border-radius:0;">Back</button>
+			</div>
+
+		</div>
+
 		<!-- score submit -->
 		<div class="score_submit centered container unselectable" id="score_submit" style="display:none;">
 
@@ -248,10 +264,15 @@
 				<button onclick="init_start()" type="button" class="btn btn-block" style="border-radius:0;" id="start_button">Start</button>
 			</div>
 
+			<!-- leaderboard button -->
+			<div class="row">
+				<button onclick="event_show_leaderboard()" type="button" class="btn btn-block" style="border-radius:0;margin-top:0.25em;" id="score_button">Leaderboard</button>
+			</div>
+
 		</div>
 
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 
 		<script src="js/main.js" charset="utf-8"></script>

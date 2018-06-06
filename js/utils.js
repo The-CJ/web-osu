@@ -119,6 +119,22 @@ async function lifebar_drain() {
 
 function submit_score() {
 
-  show_message('TO DO: Score Submit');
+  let sub = {};
+
+  sub['name'] = $('#submitname').val();
+  sub['score'] = score;
+  sub['story'] = mod_story;
+  sub['story_diff'] = story_diff;
+  sub['ar'] = current_ar;
+  sub['cs'] = current_cs;
+  sub['od'] = current_od;
+  sub['hp'] = current_hp;
+  sub['multiplyer'] = combo_multiplyer;
+  sub['count_hit'] = count_hit;
+  sub['count_fail'] = count_fail;
+  sub['highest_combo'] = count_highest_combo;
+
+  $.post('http://phaaze.net/api/games/webosu', sub ).always(init_stop);
+
 
 }

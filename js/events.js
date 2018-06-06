@@ -13,8 +13,6 @@ document.addEventListener('keydown', (event) => {
     init_start()
   }
   if (event.key == 'x' || event.key == 'y') {
-    console.log(current_mouse_pos.x);
-    console.log(current_mouse_pos.y);
     document.elementFromPoint(current_mouse_pos.x, current_mouse_pos.y).click();
   }
 
@@ -101,5 +99,47 @@ function event_submit() {
 
   $('#submitscore').val(score.toLocaleString());
 
+
+}
+
+function event_show_leaderboard(mode) {
+
+  playarea_window.css('z-index', '-1');
+  overlay_window.css('z-index', '-1');
+  diff_window.css('z-index', '-1').hide();
+  end_window.css('z-index', '-1');
+  countdown_window.css('z-index', '-1');
+  submit_window.css('z-index', '-1');
+  score_window.css('z-index', '100').show();
+
+  if (mode == null) {
+    mode_e = "";
+  } else if (mode == true) {
+    mode_e = "?story=True";
+  } else if (mode == false) {
+    mode_e = "?story=False";
+  }
+
+  $('label[for=leaderb]').text(mode ? 'Story' : 'Endless');
+
+  $.get('http://phaaze.net/api/games/webosu'+mode_e).done(function (data) {
+    let x = score_window.find('.content_').html('');
+    data['data'].sort(function (a, b) {
+      if (parseInt(a['score']) < parseInt(b['score'])) {return 1;}
+      else {return -1}
+    })
+    var t = 1;
+    for (entry of data['data']) {
+      if (t >= 10) {
+        return;
+      }
+      let e = $('<div class="row"><div class="col m text-center"><h3></h3></div><div class="col n text-right"><h3></h3></div><div class="col s"><h3></h3></div><div>');
+      e.find('.n h3').text(entry['name']);
+      e.find('.m h3').text('#'+t);
+      e.find('.s h3').text(Math.round(Number(entry['score'])).toLocaleString());
+      x.append(e);
+      t = t + 1;
+    }
+  })
 
 }
